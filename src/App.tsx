@@ -17,6 +17,7 @@ export type TaskType = {
 export type AllTaskType = {
   [key: string]: Array<TaskType>
 }
+
 function App() {
 
   // let [tasks, setTasks] = useState([
@@ -40,7 +41,7 @@ function App() {
       filter: 'all'
     }
   ])
-  let [tasks, setTasks] = useState <AllTaskType>({
+  let [tasks, setTasks] = useState<AllTaskType>({
     [todoListId1]: [
       {id: v1(), title: "HTML&CSS", isDone: true},
       {id: v1(), title: "JS", isDone: true},
@@ -56,16 +57,17 @@ function App() {
       {id: v1(), title: "GraphQL", isDone: false},
     ]
   })
-
   function removeTask(todoListId: string, id: string) {
-    let filteredTasks = tasks[todoListId].filter(t => t.id !== id);
-    setTasks({...tasks, [todoListId]: filteredTasks});
+    setTasks({...tasks, [todoListId]: tasks[todoListId].filter(t => t.id !== id)})
+    // let filteredTasks = tasks[todoListId].filter(t => t.id !== id);
+    // setTasks({...tasks, [todoListId]: filteredTasks});
   }
 
   function addTask(todoListId: string, title: string) {
-    let task = {id: v1(), title: title, isDone: false};
-    tasks[todoListId] = [task, ...tasks[todoListId]];
-    setTasks({...tasks})
+    let newTask = {id: v1(), title: title, isDone: false};
+    // tasks[todoListId] = [task, ...tasks[todoListId]];
+    // setTasks({...tasks})
+    setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
   }
 
 
@@ -74,8 +76,12 @@ function App() {
   }
 
   const onChangeStatusInput = (todoListId: string, currentId: string, checkedValue: boolean) => {
-    let task = tasks[todoListId].map(t => t.id === currentId ? {...t, isDone: checkedValue} : {...t})
-    setTasks({...tasks, [todoListId]: task})
+    // let task = tasks[todoListId].map(t => t.id === currentId ? {...t, isDone: checkedValue} : {...t})
+    // setTasks({...tasks, [todoListId]: task})
+    setTasks({
+      ...tasks,
+      [todoListId]: tasks[todoListId].map(t => currentId === t.id ? {...t, isDone: checkedValue} : t)
+    })
   }
   const removeToDoList = (todoListId: string) => {
     setTodoList(todoList.filter(t => t.id !== todoListId))
