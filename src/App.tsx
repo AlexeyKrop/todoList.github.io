@@ -59,14 +59,10 @@ function App() {
   })
   function removeTask(todoListId: string, id: string) {
     setTasks({...tasks, [todoListId]: tasks[todoListId].filter(t => t.id !== id)})
-    // let filteredTasks = tasks[todoListId].filter(t => t.id !== id);
-    // setTasks({...tasks, [todoListId]: filteredTasks});
   }
 
   function addTask(todoListId: string, title: string) {
     let newTask = {id: v1(), title: title, isDone: false};
-    // tasks[todoListId] = [task, ...tasks[todoListId]];
-    // setTasks({...tasks})
     setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
   }
 
@@ -76,8 +72,6 @@ function App() {
   }
 
   const onChangeStatusInput = (todoListId: string, currentId: string, checkedValue: boolean) => {
-    // let task = tasks[todoListId].map(t => t.id === currentId ? {...t, isDone: checkedValue} : {...t})
-    // setTasks({...tasks, [todoListId]: task})
     setTasks({
       ...tasks,
       [todoListId]: tasks[todoListId].map(t => currentId === t.id ? {...t, isDone: checkedValue} : t)
