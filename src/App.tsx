@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
+import {Todolist} from './Components/Todolist';
 import {v1} from 'uuid';
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -67,9 +67,9 @@ function App() {
   }
 
 
-  function changeFilter(todoListId: string, value: FilterValuesType) {
-    setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
-  }
+  // function changeFilter(todoListId: string, value: FilterValuesType) {
+  //   setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
+  // }
 
   const onChangeStatusInput = (todoListId: string, currentId: string, checkedValue: boolean) => {
     setTasks({
@@ -81,6 +81,9 @@ function App() {
     setTodoList(todoList.filter(t => t.id !== todoListId))
     delete tasks[todoListId]
     setTasks({...tasks})
+  }
+  function changeFilter(todoListId: string, value: FilterValuesType) {
+    setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
   }
   return (
     <div className="App">
@@ -103,6 +106,8 @@ function App() {
                     filter={t.filter}
                     addTask={addTask}
                     removeToDoList={removeToDoList}
+                    setTodoList={setTodoList}
+                    todoList={todoList}
           />
         )
       })}
