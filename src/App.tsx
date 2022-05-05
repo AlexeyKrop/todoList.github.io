@@ -94,6 +94,9 @@ function App() {
   function changeFilter(todoListId: string, value: FilterValuesType) {
     setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
   }
+  const changeTitle = (tId: string, newTitle: string) => {
+    setTodoList(todoList.map(t => t.id === tId ? ({...t, title: newTitle}) : t))
+  }
   return (
     <div className="App">
       <AddItemForm addItem={addToDoList} />
@@ -118,6 +121,7 @@ function App() {
                     removeToDoList={removeToDoList}
                     setTodoList={setTodoList}
                     todoList={todoList}
+                    changeTitle={changeTitle}
           />
         )
       })}
