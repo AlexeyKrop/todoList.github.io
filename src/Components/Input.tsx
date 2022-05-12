@@ -20,10 +20,8 @@ export const Input = (props: propsInputType) => {
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) =>{
     if(props.onKeyPressInput)props.onKeyPressInput(e)
   }
-  const changeEditMode = () => {
-    if(props.changeEditMode) props.changeEditMode()
-  }
+
   return (
-    <input autoFocus onBlur={changeEditMode} className = {props.className}  value={props.value} onChange={onChangeHandler} onKeyPress={onKeyPressHandler} type={props.type} checked={props.checked}/>
+    <input autoFocus onBlur={props.changeEditMode} className = {props.className}  value={props.value} onChange={onChangeHandler} onKeyPress={onKeyPressHandler} type={props.type} checked={props.checked}/>
   )
 }

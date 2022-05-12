@@ -58,6 +58,7 @@ function App() {
       {id: v1(), title: "GraphQL", isDone: false},
     ]
   })
+
   function removeTask(todoListId: string, id: string) {
     setTasks({...tasks, [todoListId]: tasks[todoListId].filter(t => t.id !== id)})
   }
@@ -66,6 +67,7 @@ function App() {
     let newTask = {id: v1(), title: title, isDone: false};
     setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
   }
+
   const addToDoList = (title: string) => {
     const newId = v1();
     const newToDoList: TodoListType = {
@@ -91,15 +93,23 @@ function App() {
     delete tasks[todoListId]
     setTasks({...tasks})
   }
+
   function changeFilter(todoListId: string, value: FilterValuesType) {
     setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
   }
+
   const changeTitle = (tId: string, newTitle: string) => {
     setTodoList(todoList.map(t => t.id === tId ? ({...t, title: newTitle}) : t))
   }
+  const changeTask = (todolistId: string, taskId: string, newTitle: string) => {
+    setTasks({
+      ...tasks,
+      [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title: newTitle} : t)
+    })
+  }
   return (
     <div className="App">
-      <AddItemForm addItem={addToDoList} />
+      <AddItemForm addItem={addToDoList}/>
       {todoList.map(t => {
         let tasksForTodolist = tasks[t.id];
         if (t.filter === "active") {
@@ -122,6 +132,7 @@ function App() {
                     setTodoList={setTodoList}
                     todoList={todoList}
                     changeTitle={changeTitle}
+                    changeTask={changeTask}
           />
         )
       })}
