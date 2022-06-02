@@ -10,14 +10,17 @@ export const taskReducer = (tasks: AllTaskType, action: TaskACType) => {
       return {...tasks, [action.todoListId]: tasks[action.todoListId].filter(t => t.id !== action.taskId)}
     case "CHANGE_STATUS_INPUT":
       return {...tasks, [action.todoListId]: tasks[action.todoListId].map(t => t.id === action.currentId ? {...t, isDone: action.checkedValue}: t)}
+    case "CHANGE_TASK_TITLE":
+      return {...tasks, [action.todoListId]: tasks[action.todoListId].map(t => t.id === action.taskId ? {...t, title: action.newTitle}: t)}
   }
 }
 
 
-type TaskACType = AddTaskAT | RemoveTaskAT | OnChangeStatusInputAT
+type TaskACType = AddTaskAT | RemoveTaskAT | OnChangeStatusInputAT | OnChangedTaskTitleAT
 type AddTaskAT = ReturnType<typeof addTaskAC>
 type RemoveTaskAT = ReturnType<typeof removeTaskAC>
 type OnChangeStatusInputAT = ReturnType<typeof onChangeStatusInputAC>
+type OnChangedTaskTitleAT = ReturnType<typeof onChangedTaskTitleAC>
 
 export const addTaskAC = (todoListId: string, title: string) => ({
   type: 'ADD_TASK',
@@ -30,3 +33,4 @@ export const removeTaskAC = (todoListId: string, taskId: string) => ({
   taskId: taskId
 } as const)
 export const onChangeStatusInputAC = (todoListId: string, currentId: string, checkValue: boolean) => ({type: 'CHANGE_STATUS_INPUT', todoListId: todoListId, currentId:currentId, checkedValue: checkValue}as const)
+export const onChangedTaskTitleAC = (todoListId: string, taskId: string, newTitle: string) => ({type: 'CHANGE_TASK_TITLE', todoListId: todoListId, taskId:taskId, newTitle: newTitle}as const)
