@@ -20,7 +20,7 @@ export const todolistReducer = (todolist: Array<TodoListType>, action: TodolistA
   }
 
 }
-type TodolistACType = AddTodolistAT | RemoveTodolistAT | ChangeFilterInTodolistAT | changeTitleInTodolistAT
+export type TodolistACType = AddTodolistAT | RemoveTodolistAT | ChangeFilterInTodolistAT | changeTitleInTodolistAT
 
 type AddTodolistAT = ReturnType<typeof addTodolistAC>
 type RemoveTodolistAT = ReturnType<typeof removeTodolistAC>
