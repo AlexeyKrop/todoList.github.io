@@ -22,6 +22,7 @@ type TodolistACType = AddTodolistAT | RemoveTodolistAT | ChangeTitleInTodolistAT
 type AddTodolistAT = ReturnType<typeof addTodolistAC>
 type RemoveTodolistAT = ReturnType<typeof removeTodolistAC>
 type ChangeTitleInTodolistAT = ReturnType<typeof changeTitleInTodolistAC>
+
 export const addTodolistAC = (title: string) => {
   return {
     type: 'ADD_TODOLIST',

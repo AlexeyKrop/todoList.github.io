@@ -1,6 +1,6 @@
 import {TodoListType} from "../../App";
 import {v1} from "uuid";
-import {addTodolistAC, removeTodolistAC, todolistReducer} from "./todolistReducer";
+import {addTodolistAC, changeTitleInTodolistAC, removeTodolistAC, todolistReducer} from "./todolistReducer";
 
 let startState: Array<TodoListType> = []
 let todoListID_1: string
@@ -30,5 +30,10 @@ test('remove Todolist', () => {
   let endState = todolistReducer(startState , removeTodolistAC(todoListID_2))
   expect(endState.length).toBe(1)
   expect(endState[0].id).toBe(todoListID_1)
+
+})
+test('change filter in Todolist', () => {
+  let endState = todolistReducer(startState , changeTitleInTodolistAC(todoListID_2, 'active'))
+  expect(endState[1].filter).toBe('active')
 
 })
