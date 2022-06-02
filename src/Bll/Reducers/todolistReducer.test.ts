@@ -6,8 +6,6 @@ let startState: Array<TodoListType> = []
 let todoListID_1: string
 let todoListID_2: string
 
-
-
 beforeEach(() => {
   todoListID_1 = v1()
   todoListID_2 = v1()

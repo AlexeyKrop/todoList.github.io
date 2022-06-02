@@ -11,14 +11,14 @@ type PropsType = {
   title: string
   tasks: Array<TaskType>
   removeTask: (todoListId: string, taskId: string) => void
-  changeFilter: (todoListId: string, value: FilterValuesType) => void
+  changeFilterInTodolist: (todoListId: string, value: FilterValuesType) => void
   addTask: (todoListId: string, title: string) => void
   removeToDoList: (todoListId: string) => void
   onChangeStatusInput: (todoListId: string, id: string, checkedValue: boolean) => void
   filter: string
   setTodoList: (todoList: Array<TodoListType>) => void
   todoList: Array<TodoListType>
-  changeTitle: (tId: string, title:string) => void
+  changeTitleInTodolist: (tId: string, title:string) => void
   changeTask: (todolistId: string,taskId: string, title:string) => void
 }
 
@@ -30,13 +30,13 @@ export function Todolist(props: PropsType) {
     props.onChangeStatusInput(props.todoListId, tId, checkedValue)
   }
   const onClickFilterHandler = (name: FilterValuesType) => {
-    props.changeFilter(props.todoListId, name);
+    props.changeFilterInTodolist(props.todoListId, name);
   }
   const removeToDoList = () => {
     props.removeToDoList(props.todoListId)
   }
   const changeTitleHandler = (title:string) => {
-    props.changeTitle(props.todoListId, title)
+    props.changeTitleInTodolist(props.todoListId, title)
   }
   const changeTaskHandler = (taskId: string, newTitle:string) => {
     props.changeTask(props.todoListId, taskId, newTitle)
