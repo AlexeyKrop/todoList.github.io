@@ -3,16 +3,7 @@ import {FilterValuesType, TodoListType} from "../../App";
 export let todoListId1 = v1()
 export let todoListId2 = v1()
 const initialState: Array<TodoListType> = [
-  {
-    id: todoListId1,
-    title: 'What To learn',
-    filter: 'all'
-  },
-  {
-    id: todoListId2,
-    title: 'What To buy',
-    filter: 'all'
-  }
+
 ]
 export const todolistReducer = (todolist: Array<TodoListType> = initialState, action: TodolistACType): Array<TodoListType> => {
   switch (action.type) {
