@@ -8,13 +8,17 @@ export const taskReducer = (tasks: AllTaskType, action: TaskACType) => {
       return {...tasks, [action.todoListId]: [newTask, ...tasks[action.todoListId]]}
     case "REMOVE_TASK":
       return {...tasks, [action.todoListId]: tasks[action.todoListId].filter(t => t.id !== action.taskId)}
+    case "CHANGE_STATUS_INPUT":
+      return {...tasks, [action.todoListId]: tasks[action.todoListId].map(t => t.id === action.currentId ? {...t, isDone: action.checkedValue}: t)}
   }
 }
 
 
-type TaskACType = AddTaskAT | RemoveTaskAT
+type TaskACType = AddTaskAT | RemoveTaskAT | OnChangeStatusInputAT
 type AddTaskAT = ReturnType<typeof addTaskAC>
 type RemoveTaskAT = ReturnType<typeof removeTaskAC>
+type OnChangeStatusInputAT = ReturnType<typeof onChangeStatusInputAC>
+
 export const addTaskAC = (todoListId: string, title: string) => ({
   type: 'ADD_TASK',
   todoListId: todoListId,
@@ -25,3 +29,4 @@ export const removeTaskAC = (todoListId: string, taskId: string) => ({
   todoListId: todoListId,
   taskId: taskId
 } as const)
+export const onChangeStatusInputAC = (todoListId: string, currentId: string, checkValue: boolean) => ({type: 'CHANGE_STATUS_INPUT', todoListId: todoListId, currentId:currentId, checkedValue: checkValue}as const)
