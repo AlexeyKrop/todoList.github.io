@@ -1,7 +1,6 @@
 import {AllTaskType} from "../../App";
 import {addTaskAC, onChangedTaskTitleAC, onChangeStatusInputAC, removeTaskAC, taskReducer} from "./taskReducer";
-import {addTodolistAC} from "./todolistReducer";
-import {v1} from "uuid";
+import {addTodolistAC, removeTodolistAC} from "./todolistReducer";
 
 let startState: AllTaskType = {};
 
@@ -71,4 +70,17 @@ test('new array should be added when new todolist is added' , () => {
   }
   expect(keys.length).toBe(3)
   expect(endState![newKey]).toEqual([])
+})
+
+test('property with todolistId should be deleted', () =>{
+
+  const action = removeTodolistAC('todoListId2')
+
+  const endState = taskReducer(startState, action)
+
+
+  const keys = Object.keys(endState!)
+
+  expect(keys.length).toBe(1)
+  expect(endState!['todoListId2']).not.toBeDefined()
 })
