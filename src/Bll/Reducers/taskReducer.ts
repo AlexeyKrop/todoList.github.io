@@ -1,7 +1,9 @@
 import {AllTaskType} from "../../App";
 import {v1} from "uuid";
 import {TodolistACType} from "./todolistReducer";
-export const taskReducer = (tasks: AllTaskType, action: TaskACType) => {
+
+let initialState: AllTaskType = {}
+export const taskReducer = (tasks: AllTaskType = initialState, action: TaskACType): AllTaskType => {
   switch (action.type) {
     case "ADD_TASK":
       let newTask = {id: v1(), title: action.taskTitle, isDone: false};
@@ -18,6 +20,8 @@ export const taskReducer = (tasks: AllTaskType, action: TaskACType) => {
       let copyState = {...tasks}
       delete copyState[action.todoListId]
       return copyState
+    default:
+      return tasks
   }
 }
 

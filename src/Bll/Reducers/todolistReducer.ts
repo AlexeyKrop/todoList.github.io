@@ -1,7 +1,8 @@
 import {v1} from "uuid";
 import {FilterValuesType, TodoListType} from "../../App";
 
-export const todolistReducer = (todolist: Array<TodoListType>, action: TodolistACType) => {
+const initialState: Array<TodoListType> = []
+export const todolistReducer = (todolist: Array<TodoListType> = initialState, action: TodolistACType): Array<TodoListType> => {
   switch (action.type) {
     case "ADD_TODOLIST":
       const newId = v1();
@@ -17,6 +18,8 @@ export const todolistReducer = (todolist: Array<TodoListType>, action: TodolistA
       return todolist.map(t => t.id === action.todoListId ? {...t, filter: action.filterValue} : t)
     case "CHANGE_TITLE_IN_TODOLIST":
       return todolist.map(t => t.id === action.todoListId? {...t, title: action.title} : t)
+    default:
+      return todolist
   }
 
 }
