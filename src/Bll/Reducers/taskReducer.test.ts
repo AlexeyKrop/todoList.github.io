@@ -1,5 +1,5 @@
 import {AllTaskType} from "../../App";
-import {addTaskAC, removeTaskAC, taskReducer} from "./taskReducer";
+import {addTaskAC, onChangeStatusInputAC, removeTaskAC, taskReducer} from "./taskReducer";
 
 let startState: AllTaskType = {};
 beforeEach(()=>{
@@ -40,4 +40,10 @@ test('check remove task', ()=> {
       {id: '3', title: 'tea', isDone: false}
     ]
   })
+} )
+test('check change input value in task', ()=> {
+  const action = onChangeStatusInputAC('todoListId1',  '2', false)
+  const endState = taskReducer(startState, action)
+  expect(endState['todoListId1'][2].isDone).toBe(false)
+  expect(endState['todoListId1'][0].isDone).toBe(false)
 } )
