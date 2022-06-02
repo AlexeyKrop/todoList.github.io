@@ -20,14 +20,6 @@ export type AllTaskType = {
 }
 
 function App() {
-
-  // let [tasks, setTasks] = useState([
-  //   {id: v1(), title: "HTML&CSS", isDone: true},
-  //   {id: v1(), title: "JS", isDone: true},
-  //   {id: v1(), title: "ReactJS", isDone: false},
-  //   {id: v1(), title: "Rest API", isDone: false},
-  //   {id: v1(), title: "GraphQL", isDone: false},
-  // ]);
   let todoListId1 = v1()
   let todoListId2 = v1()
   let [todoList, setTodoList] = useState<Array<TodoListType>>([
@@ -68,7 +60,7 @@ function App() {
     setTasks({...tasks, [todoListId]: [newTask, ...tasks[todoListId]]})
   }
 
-  const addToDoList = (title: string) => {
+  function addToDoList(title: string){
     const newId = v1();
     const newToDoList: TodoListType = {
       id: newId,
@@ -78,17 +70,14 @@ function App() {
     setTodoList([newToDoList, ...todoList])
     setTasks({...tasks, [newId]: []})
   }
-  // function changeFilter(todoListId: string, value: FilterValuesType) {
-  //   setTodoList(todoList.map(t => t.id === todoListId ? {...t, filter: value} : t))
-  // }
 
-  const onChangeStatusInput = (todoListId: string, currentId: string, checkedValue: boolean) => {
+  function onChangeStatusInput(todoListId: string, currentId: string, checkedValue: boolean)  {
     setTasks({
       ...tasks,
       [todoListId]: tasks[todoListId].map(t => currentId === t.id ? {...t, isDone: checkedValue} : t)
     })
   }
-  const removeToDoList = (todoListId: string) => {
+  function removeToDoList(todoListId: string){
     setTodoList(todoList.filter(t => t.id !== todoListId))
     delete tasks[todoListId]
     setTasks({...tasks})
@@ -101,7 +90,7 @@ function App() {
   const changeTitle = (tId: string, newTitle: string) => {
     setTodoList(todoList.map(t => t.id === tId ? ({...t, title: newTitle}) : t))
   }
-  const changeTask = (todolistId: string, taskId: string, newTitle: string) => {
+  function changeTask(todolistId: string, taskId: string, newTitle: string){
     setTasks({
       ...tasks,
       [todolistId]: tasks[todolistId].map(t => t.id === taskId ? {...t, title: newTitle} : t)

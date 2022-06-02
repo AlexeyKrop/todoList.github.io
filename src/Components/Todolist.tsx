@@ -23,18 +23,9 @@ type PropsType = {
 }
 
 export function Todolist(props: PropsType) {
-  // const [title, setTitle] = useState("")
-  // const [error, setError] = useState("")
-
   const addTask = (title: string) => {
     props.addTask(props.todoListId, title);
   }
-  // const onKeyPressInput = (e: KeyboardEvent<HTMLInputElement>) => {
-  //   setError('')
-  //   if (e.key === "Enter") {
-  //     addTask();
-  //   }
-  // }
   const onChangeStatusInputHandler = (tId: string, checkedValue: boolean) => {
     props.onChangeStatusInput(props.todoListId, tId, checkedValue)
   }
@@ -53,12 +44,6 @@ export function Todolist(props: PropsType) {
   return <div>
     <h3><EditableSpan callBack={changeTitleHandler} title={props.title} /><Button name={'X'} callback={removeToDoList}/></h3>
     <AddItemForm addItem={addTask}/>
-    {/*<div>*/}
-    {/*  <Input type="text" className={error ? 'error' : ''} value={title} setTitle={setTitle}*/}
-    {/*         onKeyPressInput={onKeyPressInput}/>*/}
-    {/*  <Button name={'+'} callback={addTask}/>*/}
-    {/*</div>*/}
-    {/*<div className={error ? 'error-message' : ''}>{error}</div>*/}
     <ul>
       {
         props.tasks.map(t => {
