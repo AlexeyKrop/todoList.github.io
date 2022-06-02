@@ -26,18 +26,8 @@ type AddTodolistAT = ReturnType<typeof addTodolistAC>
 type RemoveTodolistAT = ReturnType<typeof removeTodolistAC>
 type ChangeFilterInTodolistAT = ReturnType<typeof changeFilterInTodolistAC>
 type changeTitleInTodolistAT = ReturnType<typeof changeTitleInTodolistAC>
-export const addTodolistAC = (title: string) => {
-  return {
-    type: 'ADD_TODOLIST',
-    title: title
-  } as const
-}
-export const removeTodolistAC = (todoListId: string) => {
-  return {
-    type: 'REMOVE_TODOLIST',
-    todoListId: todoListId
-  } as const
-}
+export const addTodolistAC = (title: string) => ({type: 'ADD_TODOLIST',title: title} as const)
+export const removeTodolistAC = (todoListId: string) => ({type: 'REMOVE_TODOLIST',todoListId: todoListId} as const)
 export const changeFilterInTodolistAC = (todoListId: string, filterValue: FilterValuesType) => {
   return {
     type: 'CHANGE_FILTER_IN_TODOLIST',
