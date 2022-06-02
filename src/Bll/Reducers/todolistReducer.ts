@@ -14,8 +14,11 @@ export const todolistReducer = (todolist: Array<TodoListType>, action: TodolistA
     case "REMOVE_TODOLIST":
       return todolist.filter(t => t.id !== action.todoListId )
     case "CHANGE_FILTER_IN_TODOLIST":
-      return todolist.map(t=> t.id === action.todoListId ? {...t, filter: action.filterValue} : t)
+      return todolist.map(t => t.id === action.todoListId ? {...t, filter: action.filterValue} : t)
+    case "CHANGE_TITLE_IN_TODOLIST":
+      return todolist.map(t => t.id === action.todoListId? {...t, title: action.title} : t)
   }
+
 }
 type TodolistACType = AddTodolistAT | RemoveTodolistAT | ChangeFilterInTodolistAT | changeTitleInTodolistAT
 
@@ -42,10 +45,10 @@ export const changeFilterInTodolistAC = (todoListId: string, filterValue: Filter
     filterValue: filterValue
   } as const
 }
-export const changeTitleInTodolistAC = (todoListId: string, changeTitle: string) => {
+export const changeTitleInTodolistAC = (todoListId: string, changedTitle: string) => {
   return {
     type: 'CHANGE_TITLE_IN_TODOLIST',
     todoListId: todoListId,
-    title: changeTitle
+    title: changedTitle
   } as const
 }
