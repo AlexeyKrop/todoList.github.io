@@ -2,6 +2,7 @@ import {AllTaskType} from "../../App";
 import {addTaskAC, onChangedTaskTitleAC, onChangeStatusInputAC, removeTaskAC, taskReducer} from "./taskReducer";
 
 let startState: AllTaskType = {};
+
 beforeEach(()=>{
   startState = {
     'todoListId1': [
@@ -16,6 +17,7 @@ beforeEach(()=>{
     ]
   }
 })
+
 test('check add task', ()=> {
   const action = addTaskAC('todoListId2','juce')
   const endState = taskReducer(startState, action)
@@ -25,6 +27,7 @@ test('check add task', ()=> {
   expect(endState['todoListId2'][0].title).toBe('juce')
   expect(endState['todoListId2'][0].isDone).toBe(false)
 } )
+
 test('check remove task', ()=> {
   const action = removeTaskAC('todoListId1','1')
   const endState = taskReducer(startState, action)
@@ -41,12 +44,14 @@ test('check remove task', ()=> {
     ]
   })
 } )
+
 test('check change input value in task', ()=> {
   const action = onChangeStatusInputAC('todoListId1',  '2', false)
   const endState = taskReducer(startState, action)
   expect(endState['todoListId1'][2].isDone).toBe(false)
   expect(endState['todoListId1'][0].isDone).toBe(false)
 } )
+
 test('check change title value in task', ()=> {
   const action = onChangedTaskTitleAC('todoListId2',  '2', 'coffee')
   const endState = taskReducer(startState, action)
