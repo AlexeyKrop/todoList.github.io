@@ -1,8 +1,23 @@
 import {AllTaskType} from "../../App";
 import {v1} from "uuid";
-import {TodolistACType} from "./todolistReducer";
+import {TodolistACType, todoListId1, todoListId2} from "./todolistReducer";
 
-let initialState: AllTaskType = {}
+let initialState: AllTaskType = {
+  [todoListId1]: [
+    {id: v1(), title: "HTML&CSS", isDone: true},
+    {id: v1(), title: "JS", isDone: true},
+    {id: v1(), title: "ReactJS", isDone: false},
+    {id: v1(), title: "Rest API", isDone: false},
+    {id: v1(), title: "GraphQL", isDone: false},
+  ],
+  [todoListId2]: [
+    {id: v1(), title: "HTML&CSS", isDone: true},
+    {id: v1(), title: "JS", isDone: true},
+    {id: v1(), title: "ReactJS", isDone: false},
+    {id: v1(), title: "Rest API", isDone: false},
+    {id: v1(), title: "GraphQL", isDone: false},
+  ]
+}
 export const taskReducer = (tasks: AllTaskType = initialState, action: TaskACType): AllTaskType => {
   switch (action.type) {
     case "ADD_TASK":
@@ -15,7 +30,7 @@ export const taskReducer = (tasks: AllTaskType = initialState, action: TaskACTyp
     case "CHANGE_TASK_TITLE":
       return {...tasks, [action.todoListId]: tasks[action.todoListId].map(t => t.id === action.taskId ? {...t, title: action.newTitle}: t)}
     case "ADD_TODOLIST":
-      return {...tasks, [v1()]: [],}
+      return {...tasks, [action.id]: [],}
     case "REMOVE_TODOLIST":
       let copyState = {...tasks}
       delete copyState[action.todoListId]

@@ -16,7 +16,6 @@ type PropsType = {
   removeToDoList: (todoListId: string) => void
   onChangeStatusInput: (todoListId: string, id: string, checkedValue: boolean) => void
   filter: string
-  setTodoList: (todoList: Array<TodoListType>) => void
   todoList: Array<TodoListType>
   changeTitleInTodolist: (tId: string, title:string) => void
   changeTask: (todolistId: string,taskId: string, title:string) => void
