@@ -20,13 +20,13 @@ type TodolistACType = AddTodolistAT | RemoveTodolistAT
 type AddTodolistAT = ReturnType<typeof addTodolistAC>
 type RemoveTodolistAT = ReturnType<typeof removeTodolistAC>
 
-const addTodolistAC = (title: string) => {
+export const addTodolistAC = (title: string) => {
   return {
     type: 'ADD_TODOLIST',
     title: title
   } as const
 }
-const removeTodolistAC = (todoListId: string) => {
+export const removeTodolistAC = (todoListId: string) => {
   return {
     type: 'REMOVE_TODOLIST',
     todoListId: todoListId
