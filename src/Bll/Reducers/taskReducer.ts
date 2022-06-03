@@ -17,7 +17,8 @@ export const taskReducer = (tasks: AllTaskType = initialState, action: TaskACTyp
     case "CHANGE_TASK_TITLE":
       return {...tasks, [action.todoListId]: tasks[action.todoListId].map(t => t.id === action.taskId ? {...t, title: action.newTitle}: t)}
     case "ADD_TODOLIST":
-      return {...tasks, [action.id]: [],}
+      debugger
+      return {...tasks, [action.todoListId]: [],}
     case "REMOVE_TODOLIST":
       let copyState = {...tasks}
       delete copyState[action.todoListId]
