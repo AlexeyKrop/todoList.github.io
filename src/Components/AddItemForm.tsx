@@ -1,7 +1,7 @@
 import React, {KeyboardEvent, useState} from 'react';
 import {Input} from "./Input";
 import {Button} from "./Button";
-type AddItemFormPropsType = {
+export type AddItemFormPropsType = {
   addItem: (title: string) => void
 }
 export const AddItemForm = (props: AddItemFormPropsType) => {

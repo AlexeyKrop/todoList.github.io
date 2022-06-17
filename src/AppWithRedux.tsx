@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import {Todolist} from './Components/Todolist';
-import {v1} from 'uuid';
 import {AddItemForm} from "./Components/AddItemForm";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./Bll/State/store";
@@ -29,36 +28,6 @@ export type AllTaskType = {
 }
 
 function AppWithRedux() {
-  // let todoListId1 = v1()
-  // let todoListId2 = v1()
-  // let [todoList, setTodoList] = useState<Array<TodoListType>>([
-  //   {
-  //     id: todoListId1,
-  //     title: 'What To learn',
-  //     filter: 'all'
-  //   },
-  //   {
-  //     id: todoListId2,
-  //     title: 'What To buy',
-  //     filter: 'all'
-  //   }
-  // ])
-  // let [tasks, setTasks] = useState<AllTaskType>({
-  //   [todoListId1]: [
-  //     {id: v1(), title: "HTML&CSS", isDone: true},
-  //     {id: v1(), title: "JS", isDone: true},
-  //     {id: v1(), title: "ReactJS", isDone: false},
-  //     {id: v1(), title: "Rest API", isDone: false},
-  //     {id: v1(), title: "GraphQL", isDone: false},
-  //   ],
-  //   [todoListId2]: [
-  //     {id: v1(), title: "HTML&CSS", isDone: true},
-  //     {id: v1(), title: "JS", isDone: true},
-  //     {id: v1(), title: "ReactJS", isDone: false},
-  //     {id: v1(), title: "Rest API", isDone: false},
-  //     {id: v1(), title: "GraphQL", isDone: false},
-  //   ]
-  // })
 
   let tasks = useSelector<AppRootStateType, AllTaskType>(state => state.tasks)
   let todoList = useSelector<AppRootStateType, Array<TodoListType>>(state => state.todoList)
