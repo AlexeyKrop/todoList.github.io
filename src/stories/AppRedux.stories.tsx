@@ -9,6 +9,6 @@ export default {
   component: AppWithRedux,
 
 } as ComponentMeta<typeof AppWithRedux>
-const Template: ComponentStory<typeof AppWithRedux> = (args) => (<Provider store={store}> <AppWithRedux/>  </Provider>);
+const Template: ComponentStory<typeof AppWithRedux> = () => (<Provider store={store}> <AppWithRedux/>  </Provider>);
 export const AppWithReduxStories = Template.bind({});
 AppWithReduxStories.args = {};
