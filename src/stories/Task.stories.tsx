@@ -2,8 +2,6 @@ import {ComponentMeta, ComponentStory} from "@storybook/react";
 import {Task} from "../Components/Task";
 import React from "react";
 import {action} from "@storybook/addon-actions";
-import {AddItemFormStories} from "./AddItemForm.stories";
-import {TaskType} from "../App";
 
 export default {
   title: 'Todolist/Task',
