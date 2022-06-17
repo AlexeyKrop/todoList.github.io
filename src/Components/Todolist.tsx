@@ -1,9 +1,9 @@
 import React from 'react';
 import {FilterValuesType, TaskType, TodoListType} from '../App';
 import {Button} from "./Button";
-import {Input} from "./Input";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import {Task} from "./Task";
 
 
 type PropsType = {
@@ -43,20 +43,7 @@ export function Todolist(props: PropsType) {
   return <div>
     <h3><EditableSpan callBack={changeTitleHandler} title={props.title} /><Button name={'X'} callback={removeToDoList}/></h3>
     <AddItemForm addItem={addTask}/>
-    <ul>
-      {
-        props.tasks.map(t => {
-          const onClickRemoveHandler = () => props.removeTask(props.todoListId, t.id)
-          return <li className={t.isDone ? 'is-done' : ''} key={t.id}>
-            <Input onChangeStatusInputHandler={(checkedValue) => {
-              onChangeStatusInputHandler(t.id, checkedValue)
-            }} type="checkbox" checked={t.isDone}/>
-            <EditableSpan callBack={(newTitle)=>changeTaskHandler(t.id , newTitle)} title={t.title} />
-            <Button name={'x'} callback={onClickRemoveHandler}/>
-          </li>
-        })
-      }
-    </ul>
+    <Task tasks={props.tasks} changeTaskHandler={changeTaskHandler} removeTask={props.removeTask} todoListId={props.todoListId} onChangeStatusInputHandler={onChangeStatusInputHandler}/>
     <div>
       <Button className={props.filter === 'all' ? 'active-filter' : ''} name={'All'}
               callback={() => onClickFilterHandler('all')}/>
